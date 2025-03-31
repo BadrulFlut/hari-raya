@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Hari Raya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0047AB, #87CEFA);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 50px 0;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+            margin: 80px 0;
+        }
+        
+        h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .greeting-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .greeting-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .greeting {
+            color: white;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn {
+            background: #ffffff;
+            color: #0047AB;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 1rem 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: #0047AB;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .feature {
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .feature-item {
+            width: 30%;
+            min-width: 200px;
+            margin: 1rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .ketupat-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .greeting {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .feature-item {
+                width: 100%;
+                margin: 1rem 0;
+            }
+        }
+        
+        /* Animation for stars */
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        /* Animation for ketupat */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        @keyframes slowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .date-info {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin: 1rem 0;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 1rem;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .countdown-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+        }
+        
+        .crescent {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- SVG Decorations -->
+    <div class="ketupat-container" id="ketupat-container"></div>
+    
+    <!-- Crescent Moon SVG -->
+    <svg class="crescent" viewBox="0 0 100 100">
+        <path d="M50,15 A35,35 0 1,1 50,85 A35,35 0 1,1 50,15 Z" fill="none" stroke="white" stroke-width="2"/>
+        <path d="M50,15 A35,35 0 1,1 50,85 A25,35 0 1,0 50,15 Z" fill="white"/>
+    </svg>
+    
+    <div class="container">
+        <div style="margin-top: 40px;"></div>
+        <h1>Selamat Hari Raya</h1>
+        <div class="subtitle">Eid Mubarak 1445 H</div>
+        
+        <div class="date-info">1 Syawal 1445 H</div>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Hari</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Jam</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Menit</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Detik</span>
+            </div>
+        </div>
+        
+        <h2>Ucapan Selamat Hari Raya</h2>
+        
+        <div class="greeting-card">
+            <p class="greeting">"Taqabbalallahu minna wa minkum, shiyamana wa shiyamakum. Kullu 'amin wa antum bikhair. Selamat Hari Raya Idul Fitri, mohon maaf lahir dan batin."</p>
+        </div>
+        
+        <div class="greeting-card">
+            <p class="greeting">"Di hari yang fitri ini, mari kita saling memaafkan dan mempererat tali silaturahmi. Semoga Allah SWT menerima amalan kita selama bulan Ramadhan yang penuh berkah ini."</p>
+        </div>
+        
+        <div class="greeting-card">
+            <p class="greeting">"Seiring berjalannya waktu di hari yang suci ini, semoga kita bisa menjadi pribadi yang lebih baik lagi. Selamat merayakan kemenangan setelah sebulan penuh berpuasa."</p>
+        </div>
+        
+        <button class="btn" id="greet-btn">Kirim Ucapan</button>
+        
+        <div class="feature">
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="2"/>
+                    <path d="M30,50 L45,65 L70,35" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="feature-title">Introspeksi Diri</div>
+                <p>Momen untuk merenung dan mengevaluasi diri</p>
+            </div>
+            
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 100 100">
+                    <rect x="25" y="30" width="50" height="50" rx="5" fill="none" stroke="white" stroke-width="2"/>
+                    <rect x="35" y="20" width="30" height="20" rx="5" fill="none" stroke="white" stroke-width="2"/>
+                    <line x1="35" y1="55" x2="65" y2="55" stroke="white" stroke-width="2"/>
+                    <line x1="35" y1="65" x2="55" y2="65" stroke="white" stroke-width="2"/>
+                </svg>
+                <div class="feature-title">Silaturahmi</div>
+                <p>Momen untuk bermaaf-maafan dan mempererat hubungan</p>
+            </div>
+            
+            <div class="feature-item">
+                <svg class="feature-icon" viewBox="0 0 100 100">
+                    <circle cx="50" cy="35" r="15" fill="none" stroke="white" stroke-width="2"/>
+                    <path d="M25,80 Q50,60 75,80" fill="none" stroke="white" stroke-width="2"/>
+                    <path d="M50,50 L50,70" fill="none" stroke="white" stroke-width="2"/>
+                    <path d="M30,60 L70,60" fill="none" stroke="white" stroke-width="2"/>
+                </svg>
+                <div class="feature-title">Berbagi Kebahagiaan</div>
+                <p>Momen untuk berbagi dengan sesama</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Galactic Tecnology Indonesia | Badflut</p>
+        </div>
+    </div>
+
+    <script>
+        // Create SVG stars
+        for(let i = 0; i < 50; i++) {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("class", "decoration");
+            svg.setAttribute("width", "10");
+            svg.setAttribute("height", "10");
+            svg.setAttribute("viewBox", "0 0 10 10");
+            svg.style.position = "absolute";
+            svg.style.left = `${Math.random() * 100}%`;
+            svg.style.top = `${Math.random() * 100}%`;
+            svg.style.opacity = Math.random() * 0.5 + 0.3;
+            svg.style.animation = `twinkle ${1 + Math.random() * 3}s infinite`;
+            
+            const star = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            star.setAttribute("points", "5,0 6,3.5 10,3.5 7,5.5 8,9 5,7 2,9 3,5.5 0,3.5 3.5,3.5");
+            star.setAttribute("fill", "white");
+            
+            svg.appendChild(star);
+            document.body.appendChild(svg);
+        }
+        
+        // Create SVG ketupat (diamond shapes)
+        const ketupatContainer = document.getElementById("ketupat-container");
+        
+        for(let i = 0; i < 15; i++) {
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("width", "40");
+            svg.setAttribute("height", "40");
+            svg.setAttribute("viewBox", "0 0 40 40");
+            svg.style.position = "absolute";
+            svg.style.left = `${Math.random() * 100}%`;
+            svg.style.top = `${Math.random() * 100}%`;
+            svg.style.animation = `float ${3 + Math.random() * 4}s infinite alternate, slowRotate ${20 + Math.random() * 40}s linear infinite`;
+            
+            // Diamond shape
+            const ketupat = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            ketupat.setAttribute("points", "20,0 40,20 20,40 0,20");
+            ketupat.setAttribute("fill", "none");
+            ketupat.setAttribute("stroke", "rgba(255,255,255,0.5)");
+            ketupat.setAttribute("stroke-width", "1");
+            
+            // Create pattern inside
+            const pattern1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            pattern1.setAttribute("x1", "0");
+            pattern1.setAttribute("y1", "20");
+            pattern1.setAttribute("x2", "40");
+            pattern1.setAttribute("y2", "20");
+            pattern1.setAttribute("stroke", "rgba(255,255,255,0.5)");
+            pattern1.setAttribute("stroke-width", "0.5");
+            
+            const pattern2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            pattern2.setAttribute("x1", "20");
+            pattern2.setAttribute("y1", "0");
+            pattern2.setAttribute("x2", "20");
+            pattern2.setAttribute("y2", "40");
+            pattern2.setAttribute("stroke", "rgba(255,255,255,0.5)");
+            pattern2.setAttribute("stroke-width", "0.5");
+            
+            svg.appendChild(ketupat);
+            svg.appendChild(pattern1);
+            svg.appendChild(pattern2);
+            ketupatContainer.appendChild(svg);
+        }
+        
+        // Greet button event
+        document.getElementById('greet-btn').addEventListener('click', function() {
+            this.textContent = 'Terima Kasih!';
+            
+            // Create fireworks effect with SVGs
+            for(let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                    svg.setAttribute("class", "decoration");
+                    svg.setAttribute("width", "100");
+                    svg.setAttribute("height", "100");
+                    svg.setAttribute("viewBox", "0 0 100 100");
+                    svg.style.position = "absolute";
+                    svg.style.left = `${Math.random() * 100}%`;
+                    svg.style.top = `${Math.random() * 70}%`;
+                    svg.style.opacity = "0";
+                    svg.style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
+                    
+                    // Create firework rays
+                    for(let j = 0; j < 12; j++) {
+                        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                        const angle = j * 30;
+                        const radians = angle * Math.PI / 180;
+                        line.setAttribute("x1", "50");
+                        line.setAttribute("y1", "50");
+                        line.setAttribute("x2", 50 + 45 * Math.cos(radians));
+                        line.setAttribute("y2", 50 + 45 * Math.sin(radians));
+                        line.setAttribute("stroke", "white");
+                        line.setAttribute("stroke-width", "2");
+                        svg.appendChild(line);
+                    }
+                    
+                    document.body.appendChild(svg);
+                    
+                    // Animate
+                    setTimeout(() => {
+                        svg.style.opacity = "1";
+                    }, 10);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        document.body.removeChild(svg);
+                    }, 1000);
+                    
+                }, i * 200);
+            }
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                this.textContent = 'Kirim Ucapan';
+            }, 3000);
+        });
+        
+        // Countdown timer
+        function updateCountdown() {
+            // Set the date for next Eid
+            const eidDate = new Date("Maret 20, 2026 00:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = eidDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }
+        
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
